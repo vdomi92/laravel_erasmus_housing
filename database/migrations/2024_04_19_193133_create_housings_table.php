@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('street');
             $table->unsignedInteger('house_nr');
             $table->string('description');
+            $table->tinyInteger('nr_of_slots');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
