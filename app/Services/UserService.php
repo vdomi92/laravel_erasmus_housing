@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
+    /**
+     * @param RegisterUserRequest $request
+     * @return void
+     */
     public function create(RegisterUserRequest $request): void
     {
         $user = User::create([
@@ -23,4 +27,6 @@ class UserService
 
         Auth::login($user);
     }
+
+    // Could add update, delete, etc. methods here, will keep the original scaffolded files for now
 }
