@@ -24,7 +24,8 @@ class Housing extends Model
         'street',
         'house_nr',
         'description',
-        'user_id'
+        'user_id',
+        'nrOfSlots',
     ];
 
     /**
