@@ -24,6 +24,7 @@ class HousingFactory extends Factory
             'street' => fake()->streetName(),
             'house_nr' => rand(1, 1000),
             'description' => fake()->text(100),
+            'nr_of_slots' => rand(1, 5),
         ];
     }
 }
