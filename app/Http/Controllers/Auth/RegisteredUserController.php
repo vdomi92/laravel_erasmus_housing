@@ -15,6 +15,7 @@ class RegisteredUserController extends Controller
 
     public function __construct(UserService $userService)
     {
+        $this->userService = $userService;
     }
 
     /**
@@ -32,7 +33,7 @@ class RegisteredUserController extends Controller
      */
     public function store(RegisterUserRequest $request): RedirectResponse
     {
-        $this->userService->create($request->validated());
+        $this->userService->create($request);
 
         return redirect(route('dashboard', absolute: false));
     }
