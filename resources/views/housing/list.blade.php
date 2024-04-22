@@ -7,21 +7,14 @@
                 <x-nav-items></x-nav-items>
                 <div class="ms-auto">Search icon here</div>
             </div>
-                    @foreach ($housings as $housing)
-
-                    @endforeach
 
         </div>
     </div>
     <div class="card w-75 mx-auto mt-1">
-        <div class="card-body">
-
-
-
+        <div class="card-body d-flex flex-wrap">
             @foreach ($housings as $housing)
-
+                <x-single-housing-display :housing="$housing"></x-single-housing-display>
             @endforeach
-
         </div>
     </div>
 </x-app-layout>
