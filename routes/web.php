@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\HousingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/housings', [HousingController::class, 'list'])->name('housings.list');
     Route::get('/housings/{id}', [HousingController::class, 'show'])->name('housings.show');
+    //TODO create policy to protect housing updates and deletions
     Route::patch('/housings/{id}', [HousingController::class, 'update'])->name('housings.update');
     Route::delete('/housings/{id}', [HousingController::class, 'destroy'])->name('housings.destroy');
     Route::post('/housings', [HousingController::class, 'store'])->name('housings.store');
+
+    //TODO create policy to protect application creations
+    Route::get('/applications/create/{id}', [ApplicationController::class, 'create'])->name('applications.create');
+    Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
 });
 
 require __DIR__.'/auth.php';
