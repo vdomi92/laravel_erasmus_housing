@@ -20,8 +20,11 @@ return new class extends Migration
             $table->string('filename');
             $table->string('path');
 
-            $table->unsignedBigInteger('gallery_id');
-            $table->foreign('gallery_id')->references('id')->on('galleries');
+            $table->unsignedBigInteger('housing_id');
+            $table->foreign('housing_id')
+                ->references('id')
+                ->on('housings')
+                ->onDelete('cascade');
         });
     }
 
