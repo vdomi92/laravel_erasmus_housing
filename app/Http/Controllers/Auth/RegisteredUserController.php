@@ -11,9 +11,9 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    public function __construct(protected UserService $userService)
-    {
-    }
+    public function __construct(
+        protected UserService $userService
+    ){}
 
     /**
      * Display the registration view.
