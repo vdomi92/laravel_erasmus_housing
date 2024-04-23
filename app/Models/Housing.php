@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @mixin Builder
@@ -37,11 +38,11 @@ class Housing extends Model
     /**
      * Get the user that owns the housing.
      *
-     * @return BelongsTo
+     * @return HasOne
      */
-    public function owner(): BelongsTo
+    public function owner(): HasOne
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     /**
@@ -62,5 +63,19 @@ class Housing extends Model
     public function applicants(): HasManyThrough
     {
         return $this->thoughApplications()->hasApplicant();
+    }
+
+    /**
+     * Adds the accepted_count property to the result which counts the number of accepted applications for the housing
+     * through it's related applications.
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeWithAcceptedApplicationsCount(Builder $query): Builder
+    {
+        return $query->withCount(['applications as accepted_count' => function ($query) {
+            $query->where('is_accepted', 1);
+        }]);
     }
 }
