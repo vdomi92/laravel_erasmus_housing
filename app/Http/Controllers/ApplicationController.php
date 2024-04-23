@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Applications\CreateApplicationRequest;
 use App\Models\Application;
 use App\Services\ApplicationService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
@@ -15,6 +16,10 @@ class ApplicationController extends Controller
         protected ApplicationService $applicationService
     ) {}
 
+    /**
+     * @param Request $request
+     * @return View
+     */
     public function create(Request $request): View
     {
         $id = (int)$request->route('id');
@@ -22,7 +27,11 @@ class ApplicationController extends Controller
         return view('applications.create', ['id' => $id]);
     }
 
-    public function store(CreateApplicationRequest $request)
+    /**
+     * @param CreateApplicationRequest $request
+     * @return RedirectResponse
+     */
+    public function store(CreateApplicationRequest $request): RedirectResponse
     {
         $response = Gate::inspect('create', [Application::class, $request['housing_id']]);
 
