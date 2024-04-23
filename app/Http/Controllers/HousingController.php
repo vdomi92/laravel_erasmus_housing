@@ -4,33 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Services\HousingService;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class HousingController extends Controller
 {
-    protected HousingService $housingService;
-
-    public function __construct(HousingService $housingService)
+    public function __construct(protected HousingService $housingService)
     {
-        $this->housingService = $housingService;
     }
 
-    public function list(Request $request)
+    /**
+     * @return View
+     */
+    public function list(): View
     {
         return view('housing.list', [
-            'user' => $request->user(),
             'housings' => $this->housingService->list(),
         ]);
     }
 
-    //TODO fix these placeholder methods, create requests, etc...
-    public function show(Request $request, int $id)
+    /**
+     * @param Request $request
+     * @return View
+     */
+    public function show(Request $request): View
     {
+        $id = (int)$request->route('id');
+
         return view('housing.show', [
             'user' => $request->user(),
-            'housing' => $this->housingService->show($id),
+            'housing' => $this->housingService->getByIdWithRelations($id),
         ]);
     }
 
+    //TODO fix these placeholder methods, create requests, etc...
     public function update(Request $request, int $id)
     {
         $this->housingService->update($id, $request->all());
