@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 /**
  * @mixin Builder
+ * @property int $id
  */
 class Application extends Model
 {
@@ -24,11 +25,10 @@ class Application extends Model
      */
     protected $fillable = [
         'message',
-        'start_date',
         'duration',
         'is_accepted',
         'user_id',
-        'housing_id'
+        'housing_id',
     ];
 
     /**

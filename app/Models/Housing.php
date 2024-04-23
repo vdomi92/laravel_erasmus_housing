@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @mixin Builder
+ * @property int $id
  */
 class Housing extends Model
 {
@@ -30,8 +31,8 @@ class Housing extends Model
         'street',
         'house_nr',
         'description',
-        'user_id',
         'nrOfSlots',
+        'user_id',
     ];
 
     /**

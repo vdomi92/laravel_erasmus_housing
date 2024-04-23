@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 /**
  * @mixin Builder
+ * @property int $id
  */
 class Image extends Model
 {

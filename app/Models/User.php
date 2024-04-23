@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @mixin Builder
+ * @property int $id
  */
 class User extends Authenticatable
 {
