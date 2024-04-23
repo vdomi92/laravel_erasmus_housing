@@ -51,7 +51,7 @@
                     </header>
                     <main class="mt-6">
                     @auth
-                            <div>Thank you for logging in. Please click on dashboard to start using the application</div>
+                            <div>Hello, please click on dashboard to start using the application</div>
                     @else
                             <div>Hello, welcome to an unofficial Erasmus flat sharing application. Please log in to use it.</div>
                     @endauth
