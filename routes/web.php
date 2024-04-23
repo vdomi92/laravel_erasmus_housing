@@ -23,10 +23,10 @@ Route::middleware('auth')->group(function () {
     //TODO create policy to protect housing updates and deletions
     Route::patch('/housings/{id}', [HousingController::class, 'update'])->name('housings.update');
     Route::delete('/housings/{id}', [HousingController::class, 'destroy'])->name('housings.destroy');
-    Route::get('/listing/create', [HousingController::class, 'create'])->name('housings.create');
+    Route::get('/housing/create', [HousingController::class, 'create'])->name('housings.create');
     Route::post('/housings', [HousingController::class, 'store'])->name('housings.store');
 
-    Route::get('/applications/create/{id}', [ApplicationController::class, 'create'])->name('applications.create');
+    Route::get('/application/create/{id}', [ApplicationController::class, 'create'])->name('applications.create');
     Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
 });
 
