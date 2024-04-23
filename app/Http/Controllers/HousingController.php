@@ -8,9 +8,9 @@ use Illuminate\View\View;
 
 class HousingController extends Controller
 {
-    public function __construct(protected HousingService $housingService)
-    {
-    }
+    public function __construct(
+        protected HousingService $housingService
+    ){}
 
     /**
      * @return View
@@ -36,7 +36,22 @@ class HousingController extends Controller
         ]);
     }
 
+    /**
+     * @return View
+     */
+    public function create(): View
+    {
+        return view('housing.create');
+    }
+
     //TODO fix these placeholder methods, create requests, etc...
+    public function store(Request $request)
+    {
+        $this->housingService->store($request->validate());
+
+        return redirect()->route('housings.list');
+    }
+
     public function update(Request $request, int $id)
     {
         $this->housingService->update($id, $request->all());
@@ -51,10 +66,5 @@ class HousingController extends Controller
         return redirect()->route('housings.list');
     }
 
-    public function store(Request $request)
-    {
-        $this->housingService->store($request->validate());
 
-        return redirect()->route('housings.list');
-    }
 }

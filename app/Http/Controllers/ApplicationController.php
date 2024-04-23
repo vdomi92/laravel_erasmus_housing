@@ -14,6 +14,7 @@ class ApplicationController extends Controller
     public function __construct(
         protected ApplicationService $applicationService
     ) {}
+
     public function create(Request $request): View
     {
         $id = (int)$request->route('id');

@@ -5,7 +5,7 @@
         </button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('housings.list') }}">Browse listings</a></li>
-            <li><a class="dropdown-item" href="#">Create listing</a></li>
+            <li><a class="dropdown-item" href="{{ route('housings.create') }}">Create listing</a></li>
             <li><a class="dropdown-item" href="#">My listings</a></li>
         </ul>
     </div>
