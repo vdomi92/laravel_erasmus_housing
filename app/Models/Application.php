@@ -11,6 +11,8 @@ class Application extends Model
 {
     use HasFactory;
 
+    public $preventsLazyLoading = true;
+
     /**
      * The attributes that are mass assignable.
      *
