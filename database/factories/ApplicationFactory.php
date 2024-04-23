@@ -19,7 +19,6 @@ class ApplicationFactory extends Factory
     {
         return [
             'message' => fake()->text(100),
-            'start_date' => fake()->dateTimeBetween('now', '+3 years'),
             'duration' => rand(1, 36),
             'is_accepted' => fake()->randomElement([true, false, null]),
         ];
