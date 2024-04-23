@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('message');
             $table->date('start_date');
             $table->unsignedTinyInteger('duration');
-            $table->boolean('is_accepted')->nullable();
+            $table->boolean('is_accepted')->default(null)->nullable();
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
