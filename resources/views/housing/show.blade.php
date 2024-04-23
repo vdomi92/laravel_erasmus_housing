@@ -17,7 +17,8 @@
                     <p class="mb-1">{{ $housing->description }}</p>
                 </div>
                 <div class="pb-1 d-flex flex-wrap justify-center mt-auto gap-3">
-                    <a href="{{route('housings.list')}}" class="btn btn-primary w-40 full-width-md">Apply</a>
+                    <a href="{{route('applications.create', $housing->id)}}" class="btn btn-primary w-40 full-width-md">Apply</a>
+                    {{--    TODO: change route to message.create, $housing->owner->id              --}}
                     <a href="{{route('housings.list')}}" class="btn btn-primary w-40 full-width-md">Send a message</a>
                 </div>
             </div>
