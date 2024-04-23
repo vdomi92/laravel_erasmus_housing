@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -63,6 +62,16 @@ class Housing extends Model
     public function applicants(): HasManyThrough
     {
         return $this->thoughApplications()->hasApplicant();
+    }
+
+    /**
+     * Get the images for the housing.
+     *
+     * @return HasMany
+     */
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class, 'housing_id', 'id');
     }
 
     /**
