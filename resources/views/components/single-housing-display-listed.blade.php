@@ -3,8 +3,10 @@
 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-4 p-1">
     <div class="card h-100">
         <img
-            src="{{'...'}}"
-            class="card-img-top col-md-6 img-thumbnail ratio ratio-16x9"
+            src="{{ $housing->path == null ?
+                asset('storage/house-placeholder.png') :
+                 asset('storage/'. $housing->path)  }}"
+            class="card-img-top col-md-6 img-thumbnail ratio ratio-16x9 p-0"
             alt="Preview image">
 
         <div class="d-flex flex-col h-100 justify-content-between">

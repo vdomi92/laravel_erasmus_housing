@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Housings\CreateHousingRequest;
 use App\Services\HousingService;
 use App\Services\ImageService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class HousingController extends Controller
@@ -36,7 +36,7 @@ class HousingController extends Controller
 
         return view('housing.show', [
             'user' => $request->user(),
-            'housing' => $this->housingService->getByIdWithRelations($id),
+            'housing' => $this->housingService->getWithDetails($id),
         ]);
     }
 
@@ -48,7 +48,10 @@ class HousingController extends Controller
         return view('housing.create');
     }
 
-
+    /**
+     * @param CreateHousingRequest $request
+     * @return RedirectResponse
+     */
     public function store(CreateHousingRequest $request)
     {
         $housing = $this->housingService->store($request);

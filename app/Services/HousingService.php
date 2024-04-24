@@ -18,6 +18,7 @@ class HousingService
      */
     public function list(): Collection
     {
+        //This could be refactored to use the scopes instead of DB facade, but I'll leave it as it is.
         $query = DB::table('housings')->select('housings.*');
 
         //Join the applications and count the accepted ones to be able to calculate the available slots
@@ -54,16 +55,19 @@ class HousingService
     }
 
     /**
-     * Finds requested entity by ID or throw ModelNotFoundException<Housing> if not found.
+     *  Finds requested entity by ID or throw ModelNotFoundException<Housing> if not found.
+     *  Relations loaded: preview image, accepted applications count, owner information.
      *
      * @param int $id
      * @return Housing
      */
-    public function getByIdWithRelations(int $id): Housing
+    public function getWithDetails(int $id): Housing
     {
         return Housing::with('owner')
+            ->withPreviewImage()
             ->withAcceptedApplicationsCount()
-            ->find($id)
+            ->where('housings.id', '=', $id)
+            ->get(['housings.*', 'preview_image', 'accepted_count'])->first()
 
             ?? throw new ModelNotFoundException(Housing::class);
     }

@@ -74,4 +74,46 @@ class Housing extends Model
     {
         return $this->hasMany(Image::class, 'housing_id', 'id');
     }
+
+    /**
+     * Get the placeholder preview image for the housing if no preview was uploaded.
+     *
+     * @return string
+     */
+    public function getPlaceholderImage(): string
+    {
+        return asset('storage/house-placeholder.png');
+    }
+
+    /**
+     * @param Builder $query
+     * @return void
+     */
+    public function scopeWithPreviewImage(Builder $query): void
+    {
+      $query->addSelect([
+          'preview_image' => Image::select('path')
+                ->whereColumn('housing_id', 'housings.id')
+                ->where('is_preview', '=', 1)
+                ->limit(1),
+        ]);
+    }
+
+    /**
+     * @param Builder $query
+     * @return void
+     */
+    public function scopeWithAcceptedApplicationsCount(Builder $query): void
+    {
+        $query->addSelect([
+            'accepted_count' => Application::selectRaw('count(*)')
+                ->whereColumn('housing_id', '=', 'housings.id')
+                ->where('is_accepted', '=', 1),
+        ]);
+    }
+
+    public function scopeWithOwner(Builder $query): void
+    {
+
+    }
 }
