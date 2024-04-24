@@ -18,7 +18,7 @@ class CreateApplicationRequest extends FormRequest
         return [
             'housing_id' => ['required', 'integer'],
             'duration' => ['required', 'integer', 'min:1'],
-            'message' => ['required', 'string' ,'min:1', 'max:1024'],
+            'message' => ['required', 'string' ,'min:15', 'max:1024'],
         ];
     }
 }
