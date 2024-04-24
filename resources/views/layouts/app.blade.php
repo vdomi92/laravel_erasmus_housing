@@ -35,5 +35,8 @@
                 {{ $slot }}
             </main>
         </div>
+    @push('get-countries')
+        <script src="{{ asset('/assets/js/countries.js') }}"></script>
+    @endpush
     </body>
 </html>
