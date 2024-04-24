@@ -3,7 +3,7 @@
 <x-app-layout>
     <div class="card w-50 full-width-md mx-auto mt-1 p-2">
         <div class="card-body d-flex flex-col flex-wrap">
-            <img src="..." class="card-img-top col-md-6 img-thumbnail ratio ratio-16x9 w-100 mx-auto" alt="TODO">
+            <img src="{{Storage::url('/22/hgT7nDwFdOg6JzjFTgW7fDqKMkEv7KWo787P7Kfn.webp')}}" class="card-img-top col-md-6 img-thumbnail ratio ratio-16x9 w-100 mx-auto" alt="TODO">
             <div class="d-flex flex-col">
                 <div class="pl-2 pt-3 mb-2">
                     <h5 class="fw-bold ">{{ $housing->country }}</h5>
@@ -12,7 +12,7 @@
                 <div class="pl-2 pt-2 mb-1">
                     <p class="mb-1">Provider: {{ $housing->owner->name }} ( {{$housing->owner->age}} )</p>
                     <p class="mb-1">Total places: {{ $housing->nr_of_slots }}</p>
-                    <p class="mb-1">Places remaining: {{ $housing->accepted_count }}</p>
+                    <p class="mb-1">Places remaining: {{ $housing->nr_of_slots - $housing->accepted_count }}</p>
                     <p class="mb-1">{{ $housing->description }}</p>
                 </div>
                 <div class="pb-1 d-flex flex-wrap justify-center mt-auto gap-3">
