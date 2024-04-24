@@ -18,7 +18,7 @@ class ApplicationsSeeder extends Seeder
         $housings = Housing::all();
 
         foreach ($housings as $housing) {
-            $amount = rand(1, 5);
+            $amount = rand(1, $housing->nr_of_slots);
             $applyingUsers = $users->random($amount);
 
             foreach ($applyingUsers as $user) {
