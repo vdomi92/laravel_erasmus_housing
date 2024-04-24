@@ -7,3 +7,9 @@
         width: 100% !important;
     }
 }
+
+@media(max-width: 992px) {
+    .larger-width-lg {
+        width: 75% !important;
+    }
+}
