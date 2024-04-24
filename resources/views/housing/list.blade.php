@@ -16,7 +16,7 @@
     <div class="card w-75 mx-auto mt-1">
         <div class="card-body d-flex flex-wrap">
             @foreach ($housings as $housing)
-                <x-single-housing-display :housing="$housing"></x-single-housing-display>
+                <x-single-housing-display-listed :housing="$housing"></x-single-housing-display-listed>
             @endforeach
         </div>
     </div>
