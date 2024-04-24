@@ -31,7 +31,7 @@ class Housing extends Model
         'street',
         'house_nr',
         'description',
-        'nrOfSlots',
+        'nr_of_slots',
         'user_id',
     ];
 
@@ -73,19 +73,5 @@ class Housing extends Model
     public function images(): HasMany
     {
         return $this->hasMany(Image::class, 'housing_id', 'id');
-    }
-
-    /**
-     * Adds the accepted_count property to the result which counts the number of accepted applications for the housing
-     * through it's related applications.
-     *
-     * @param Builder $query
-     * @return Builder
-     */
-    public function scopeWithAcceptedApplicationsCount(Builder $query): Builder
-    {
-        return $query->withCount(['applications as accepted_count' => function ($query) {
-            $query->where('is_accepted', 1);
-        }]);
     }
 }

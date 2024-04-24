@@ -19,6 +19,7 @@ class Image extends Model
         'is_preview',
         'filename',
         'path',
+        'housing_id',
     ];
 
     /**
