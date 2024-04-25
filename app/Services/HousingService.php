@@ -51,6 +51,8 @@ class HousingService
 
         $query->addSelect('preview_images.filename as filename', 'preview_images.path as path');
 
+        $query->whereRaw('housings.nr_of_slots - accepted_count > 0 OR accepted_count IS NULL');
+
         return $query->get();
     }
 

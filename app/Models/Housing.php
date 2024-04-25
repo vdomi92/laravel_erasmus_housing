@@ -111,9 +111,4 @@ class Housing extends Model
                 ->where('is_accepted', '=', 1),
         ]);
     }
-
-    public function scopeWithOwner(Builder $query): void
-    {
-
-    }
 }
