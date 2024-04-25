@@ -1,5 +1,4 @@
 @props(['housing', 'user'])
-{{--{{ dd($housing) }}--}}
 <x-app-layout>
     <div class="card w-50 full-width-md mx-auto mt-1 p-2">
         <div class="card-body d-flex flex-col flex-wrap">
@@ -26,8 +25,21 @@
                         <a href="{{route('applications.create', $housing->id)}}" class="btn btn-primary w-40 full-width-md">Apply</a>
                     @endcan
 
-                    {{--    TODO: change route to message.create, $housing->owner->id              --}}
-                    <a href="{{route('housings.list')}}" class="btn btn-primary w-40 full-width-md">Send a message</a>
+                    @if($housing->owner->id == $user->id)
+                        <a href="{{route('housings.edit', $housing->id)}}" class="btn btn-primary w-40 full-width-md">Edit</a>
+
+                        <div class="w-40 full-width-md">
+                            <form action="{{route('housings.destroy', $housing->id)}}" method="POST" >
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger w-100">Delete</button>
+                            </form>
+                        </div>
+
+                    @else
+                            {{--    TODO: change route to message.create, $housing->owner->id              --}}
+                        <a href="{{route('housings.list')}}" class="btn btn-primary w-40 full-width-md">Send a message</a>
+                    @endif
                 </div>
             </div>
         </div>
