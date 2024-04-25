@@ -3,7 +3,6 @@
 ## Functionalities:
   
   - add messaging  
-      - plan db schema
   - add gallery management  
   - finish house and application related routes  
 
