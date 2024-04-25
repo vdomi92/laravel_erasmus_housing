@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Requests\Housings\CreateHousingRequest;
+use App\Http\Requests\Housings\UpdateHousingRequest;
 use App\Models\Housing;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
@@ -51,6 +52,8 @@ class HousingService
 
         $query->addSelect('preview_images.filename as filename', 'preview_images.path as path');
 
+        //Filter the housings that have available slots, adding null constraint
+        //is important because > 0 will not return true for NULL values
         $query->whereRaw('housings.nr_of_slots - accepted_count > 0 OR accepted_count IS NULL');
 
         return $query->get();
@@ -92,5 +95,24 @@ class HousingService
             'description' => $request['description'],
             'user_id' => $request->user()->id,
         ]);
+    }
+
+    public function update(UpdateHousingRequest $request)
+    {
+        $id = (int)$request->route('id');
+
+        $housing = Housing::findOrFail($id);
+
+        $housing->update([
+            'country' => $request['country'],
+            'zip' => $request['zip'],
+            'city' => ucwords(strtolower($request['city'])),
+            'nr_of_slots' => $request['nr_of_slots'],
+            'street' => ucwords(strtolower($request['street'])),
+            'house_nr' => $request['house_nr'],
+            'description' => $request['description'],
+        ]);
+
+        return $housing;
     }
 }

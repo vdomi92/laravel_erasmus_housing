@@ -25,6 +25,10 @@ class ApplicationPolicy
 
     /**
      * Determine whether the user can create models.
+     *
+     * @param User $user
+     * @param int $housingId
+     * @return Response
      */
     public function create(User $user, int $housingId): Response
     {

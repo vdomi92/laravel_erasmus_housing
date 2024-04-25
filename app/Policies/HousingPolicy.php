@@ -34,10 +34,18 @@ class HousingPolicy
 
     /**
      * Determine whether the user can update the model.
+     *
+     * @param User $user
+     * @param Housing $housing
+     * @return Response
      */
-    public function update(User $user, Housing $housing): bool
+    public function update(User $user, Housing $housing): Response
     {
-        //
+        if($user->id === $housing->user_id){
+            return Response::allow('Housing updated successfully');
+        }
+
+        return Response::deny('You are not the owner of this housing');
     }
 
     /**
