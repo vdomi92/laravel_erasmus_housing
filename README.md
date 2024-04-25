@@ -1,9 +1,9 @@
 ##TODOS:
 
 #Functionalities:
-    -add messaging
-    -add gallery management
-    -finish house and application related routes
+  -add messaging
+  -add gallery management
+  -finish house and application related routes
 
 After MVP:
     -add logging library
