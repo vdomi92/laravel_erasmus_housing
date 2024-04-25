@@ -3,7 +3,7 @@
 <x-app-layout>
     <div class="card w-50 full-width-md larger-width-lg mx-auto mt-1 p-2">
         <div class="text-center">
-            <h2 class="fw-bold">Create new house listing</h2>
+            <h2 class="fw-bold">{{$housing->id ? 'Update house listing' : 'Create new house listing'}}</h2>
         </div>
         <div class="card-body mt-5">
 
