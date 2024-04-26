@@ -95,10 +95,10 @@
                     <textarea id="description"
                               class="form-control pb-1"
                               name="description"
-                              required autocomplete="description">{{ old('description', $housing->description) }}
-                    </textarea>
+                              required autocomplete="description">{{ old('description', $housing->description) }}</textarea>
                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                 </div>
+
                 @if($housing->id === null)
                     <div class="d-flex flex-col">
                         <label class="form-label mt-3" for="image">{{__('Preview image')}}</label>
@@ -106,6 +106,7 @@
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
                 @endif
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary full-width-md w-25 mt-3">{{
                         $housing->id ? 'Update' : 'Create'
