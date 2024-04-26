@@ -5,8 +5,8 @@
             <h1 class="text-center mb-3 fw-bold text-decoration-underline fs-1">House listings</h1>
             <hr class="mb-3">
             <div class="d-flex align-items-center ml-3">
-{{--             TODO   replace nav items with query filters + pagination--}}
-                <x-nav-items></x-nav-items>
+{{--             TODO replace placeholders query filters + pagination--}}
+                <div>search input filters here<div>
                 <div class="ms-auto">Search icon here</div>
             </div>
 
