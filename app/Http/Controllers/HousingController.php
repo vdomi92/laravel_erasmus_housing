@@ -7,7 +7,8 @@ use App\Http\Requests\Housings\UpdateHousingRequest;
 use App\Models\Housing;
 use App\Services\HousingService;
 use App\Services\ImageService;
-use Illuminate\Auth\Access\Gate;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -70,7 +71,7 @@ class HousingController extends Controller
      * @param CreateHousingRequest $request
      * @return RedirectResponse
      */
-    public function store(CreateHousingRequest $request)
+    public function store(CreateHousingRequest $request): RedirectResponse
     {
         $housing = $this->housingService->store($request);
         if($request->hasFile('image')){
@@ -80,27 +81,50 @@ class HousingController extends Controller
         return redirect()->route('housings.show', ['id' => $housing->id]);
     }
 
-    public function update(UpdateHousingRequest $request)
+    /**
+     * @param UpdateHousingRequest $request
+     * @return RedirectResponse
+     */
+    public function update(UpdateHousingRequest $request): RedirectResponse
     {
         $id = (int)$request->route('id');
-        $response = Gate::inspect('update', [Housing::class, $id]);
+
+        $housing = $this->housingService->getEntity($id);
+        $response = Gate::inspect('update', [Housing::class, $housing]);
 
         if($response->denied()){
             return redirect(route('housings.show', $id))->with('error', $response->message());
         }
 
-        $this->housingService->update($request);
+        $updated = $this->housingService->update($request, $housing);
+        if(!$updated){
+            return redirect(route('housings.show', $id))->with('error', 'Failed to update housing');
+        }
 
         return redirect()->route('housings.show', ['id' => $id])->with('success', $response->message());
     }
 
-    //TODO fix these placeholder methods, create requests, etc...
-    public function destroy(Request $request, int $id)
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function destroy(Request $request): RedirectResponse
     {
-        $this->housingService->destroy($id);
+        $id = (int)$request->route('id');
+        $housing = $this->housingService->getEntity($id);
 
-        return redirect()->route('housings.list');
+        $response = Gate::inspect('update', [Housing::class, $housing]);
+
+        if($response->denied()){
+            return redirect(route('housings.show', $id))->with('error', $response->message());
+        }
+
+        $deleted = $housing->delete();
+        if(!$deleted){
+            return redirect(route('housings.show', $id))->with('error', 'Failed to delete housing');
+        }
+
+        return redirect()->route('dashboard')->with('success', $response->message());
     }
-
 
 }

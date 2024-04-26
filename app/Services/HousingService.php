@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\Housings\CreateHousingRequest;
 use App\Http\Requests\Housings\UpdateHousingRequest;
 use App\Models\Housing;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -97,13 +98,16 @@ class HousingService
         ]);
     }
 
-    public function update(UpdateHousingRequest $request)
+    /**
+     * Edits housing entity's properties based on the request.
+     *
+     * @param UpdateHousingRequest $request
+     * @param Housing $housing
+     * @return bool
+     */
+    public function update(UpdateHousingRequest $request, Housing $housing): bool
     {
-        $id = (int)$request->route('id');
-
-        $housing = Housing::findOrFail($id);
-
-        $housing->update([
+        return $housing->update([
             'country' => $request['country'],
             'zip' => $request['zip'],
             'city' => ucwords(strtolower($request['city'])),
@@ -112,7 +116,14 @@ class HousingService
             'house_nr' => $request['house_nr'],
             'description' => $request['description'],
         ]);
+    }
 
-        return $housing;
+    /**
+     * @param int $id
+     * @return Housing
+     */
+    public function getEntity(int $id): Housing
+    {
+        return Housing::findOrFail($id);
     }
 }
