@@ -58,7 +58,7 @@ class HousingController extends Controller
      * @param Request $request
      * @return View
      */
-    public function edit(Request $request)
+    public function edit(Request $request): View
     {
         $id = (int)$request->route('id');
 
@@ -74,6 +74,7 @@ class HousingController extends Controller
     public function store(CreateHousingRequest $request): RedirectResponse
     {
         $housing = $this->housingService->store($request);
+
         if($request->hasFile('image')){
             $this->imageService->storeFromHousingRequest($request, $housing->id);
         }

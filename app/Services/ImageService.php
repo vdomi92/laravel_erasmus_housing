@@ -9,12 +9,16 @@ use Illuminate\Support\Facades\Storage;
 class ImageService
 {
 
-    public function storeFromHousingRequest(CreateHousingRequest $request, int $housingId)
+    /**
+     * @param CreateHousingRequest $request
+     * @param int $housingId
+     * @return Image
+     */
+    public function storeFromHousingRequest(CreateHousingRequest $request, int $housingId): Image
     {
         $image = Storage::disk('public')->put( "/".$housingId. "/", $request->file('image'));
-        //$image returns the house_id/encodedname.extension --> basically the way to actually access the file
 
-        Image::create([
+        return Image::create([
             'housing_id' => $housingId,
             'is_preview' => true,
             'filename' => $request->file('image')->getClientOriginalName(),

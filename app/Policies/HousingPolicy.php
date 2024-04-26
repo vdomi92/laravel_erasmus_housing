@@ -17,11 +17,11 @@ class HousingPolicy
      */
     public function update(User $user, Housing $housing): Response
     {
-        if($user->id === $housing->user_id){
-            return Response::allow('Housing updated successfully');
+        if($user->id !== $housing->user_id){
+            return Response::deny('You are not the owner of this housing');
         }
 
-        return Response::deny('You are not the owner of this housing');
+        return Response::allow('Housing updated successfully');
     }
 
     /**
