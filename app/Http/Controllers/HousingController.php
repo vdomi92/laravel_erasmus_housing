@@ -7,7 +7,6 @@ use App\Http\Requests\Housings\UpdateHousingRequest;
 use App\Models\Housing;
 use App\Services\HousingService;
 use App\Services\ImageService;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

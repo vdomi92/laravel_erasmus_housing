@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Applications\CreateApplicationRequest;
 use App\Models\Application;
+use App\Models\Housing;
 use App\Services\ApplicationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -42,5 +43,26 @@ class ApplicationController extends Controller
         $this->applicationService->create($request);
 
         return redirect(route('dashboard', absolute: false))->with('success', $response->message());
+    }
+
+
+    public function reviewList(Request $request)
+    {
+        $housingId = (int)$request->route('id');
+        $housingWithApplications = $this->applicationService->getApplicationsByHousingId($housingId);
+
+        dd($housingWithApplications);
+
+        $ownerId = $housingWithApplications->user_id;
+
+        $response = Gate::inspect('manage', [Housing::class, $ownerId]);
+
+        if($response->denied()){
+            return redirect(route('dashboard', absolute: false))->with('error', $response->message());
+        }
+
+        return view('applications.review', [
+            'applications' => $housingWithApplications->applications,
+        ]);
     }
 }

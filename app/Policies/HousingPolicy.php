@@ -34,7 +34,8 @@ class HousingPolicy
     }
 
     /**
-     * Determine whether the user can view the list of models in the manage view.
+     * Determine whether the user can view the list of models in the manage view or
+     * if the user is allowed to review applications for the specific housing.
      */
     public function manage(User $user, int $id): Response
     {
@@ -42,6 +43,6 @@ class HousingPolicy
             return Response::deny('You are not authorized to view this');
         }
 
-        return Response::allow('Housing list retrieved successfully');
+        return Response::allow('List retrieved successfully');
     }
 }

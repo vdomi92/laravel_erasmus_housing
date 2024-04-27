@@ -20,7 +20,8 @@ class HousingService
      */
     public function list(): Collection
     {
-        //This could be refactored to use the scopes instead of DB facade, but I'll leave it as it is.
+        //This could be refactored to use the scopes/eloquent instead of DB facade, but I'll leave it as it is.
+        //Purpose is to practice.
         $query = DB::table('housings')->select('housings.*');
 
         //Join the applications and count the accepted ones to be able to calculate the available slots

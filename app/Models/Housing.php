@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @mixin Builder
  * @property int $id
  * @property int $user_id
+ * @property Application[] $applications
  */
 class Housing extends Model
 {

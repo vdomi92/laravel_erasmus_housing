@@ -2,7 +2,7 @@
 <x-app-layout>
     <div class="card w-75 mx-auto full-width-lg min-w-700 mt-4">
         <div class="text-center text-4xl fw-bold min-w-700">
-            Manage houses
+            Manage my listed houses
         </div>
         <div class="w-100">
             <table class="table table-striped table-bordered min-w-700" >
@@ -41,7 +41,7 @@
                             <td>
                                 <div class="d-flex justify-between gap-1">
                                     <a class="btn btn-sm btn-secondary" href="{{ route('housings.show', $housing->id) }}">View</a>
-                                    <a class="btn btn-sm btn-secondary" href="{{ route('housings.show', $housing->id) }}">Applications</a>
+                                    <a class="btn btn-sm btn-secondary" href="{{ route('applications.reviewList', $housing->id) }}">Applications</a>
                                     <a class="btn btn-sm btn-secondary" href="{{ route('housings.show', $housing->id) }}">Gallery</a>
                                 </div>
                             </td>

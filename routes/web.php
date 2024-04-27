@@ -23,14 +23,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/housings', [HousingController::class, 'store'])->name('housings.store');
     Route::get('/housings/{id}', [HousingController::class, 'show'])->name('housings.show');
     Route::get('/housings/{id}/edit', [HousingController::class, 'edit'])->name('housings.edit');
-    //TODO create policy to protect housing updates and deletions
     Route::patch('/housings/{id}', [HousingController::class, 'update'])->name('housings.update');
+    //TODO create policy to protect housing deletions
     Route::delete('/housings/{id}', [HousingController::class, 'destroy'])->name('housings.destroy');
 
     Route::get('/manage/{id}', [HousingController::class, 'manage'])->name('housings.manage');
 
     Route::get('/application/create/{id}', [ApplicationController::class, 'create'])->name('applications.create');
     Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
+
+    Route::get('/applications/{id}/review', [ApplicationController::class, 'reviewList'])->name('applications.reviewList');
 });
 
 
