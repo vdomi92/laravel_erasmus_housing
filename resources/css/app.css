@@ -14,6 +14,17 @@
     }
 }
 
+.responsive-listed-house-card{
+    height: 50vh;
+    min-height: 500px;
+}
+
 div.card img {
     object-fit: cover;
 }
+
+.overflow-text {
+    overflow: hidden;
+    /*white-space: nowrap;*/
+}
+

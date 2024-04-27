@@ -1,6 +1,6 @@
 @props(['housing'])
 
-<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-4 p-1">
+<div class="col-sm-12 col-md-6 col-lg-4 col-xxl-3 mb-4 p-1 responsive-listed-house-card">
     <div class="card h-100">
         <img
             src="{{ $housing->path == null ?
@@ -9,11 +9,11 @@
             class="card-img-top col-md-6 img-thumbnail ratio ratio-16x9 p-0 h-50"
             alt="Preview image">
 
-        <div class="d-flex flex-col h-50 justify-content-between">
+        <div class="d-flex flex-col h-100 justify-content-between">
             <div class="pl-2 pt-3 mb-2">
                 <h5 class="fw-bold ">{{ $housing->city }} - {{ $housing->country }}</h5>
             </div>
-            <div class="pl-2 pt-2 mb-1">
+            <div class="pl-2 pt-2 mb-1 overflow-text">
                 <p class="mb-1">Available places: {{ $housing->nr_of_slots - $housing->accepted_count }}</p>
                 <p>{{strlen($housing->description) > 80 ?
                         substr($housing->description, 0,80) . '...'

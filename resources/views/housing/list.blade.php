@@ -6,7 +6,7 @@
             <hr class="mb-3">
             <div class="d-flex align-items-center ml-3">
 {{--             TODO replace placeholders query filters + pagination--}}
-                <div>search input filters here<div>
+                <div class="d-flex">placeholder search filters</div>
                 <div class="ms-auto">Search icon here</div>
             </div>
 
