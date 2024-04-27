@@ -27,8 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/housings/{id}', [HousingController::class, 'update'])->name('housings.update');
     Route::delete('/housings/{id}', [HousingController::class, 'destroy'])->name('housings.destroy');
 
+    Route::get('/manage/{id}', [HousingController::class, 'manage'])->name('housings.manage');
+
     Route::get('/application/create/{id}', [ApplicationController::class, 'create'])->name('applications.create');
     Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
 });
+
+
+
 
 require __DIR__.'/auth.php';

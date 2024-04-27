@@ -32,4 +32,16 @@ class HousingPolicy
         //pending applications?
         //is owner of house?
     }
+
+    /**
+     * Determine whether the user can view the list of models in the manage view.
+     */
+    public function manage(User $user, int $id): Response
+    {
+        if($user->id !== $id){
+            return Response::deny('You are not authorized to view this');
+        }
+
+        return Response::allow('Housing list retrieved successfully');
+    }
 }

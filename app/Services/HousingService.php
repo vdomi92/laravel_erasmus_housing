@@ -126,4 +126,13 @@ class HousingService
     {
         return Housing::findOrFail($id);
     }
+
+    /**
+     * @param int $userId
+     * @return Collection
+     */
+    public function getByOwner(int $userId): Collection
+    {
+        return Housing::where('user_id', $userId)->get();
+    }
 }

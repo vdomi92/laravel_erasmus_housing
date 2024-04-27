@@ -12,6 +12,9 @@
     .larger-width-lg {
         width: 75% !important;
     }
+    .full-width-lg {
+        width: 100% !important;
+    }
 }
 
 .responsive-listed-house-card{
@@ -28,3 +31,6 @@ div.card img {
     /*white-space: nowrap;*/
 }
 
+.min-w-700{
+    min-width: 700px;
+}

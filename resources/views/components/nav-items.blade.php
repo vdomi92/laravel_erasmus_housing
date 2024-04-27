@@ -6,7 +6,9 @@
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('housings.list') }}">Browse listings</a></li>
             <li><a class="dropdown-item" href="{{ route('housings.create') }}">Create listing</a></li>
-            <li><a class="dropdown-item" href="{{ route('housings.create') }}">My listings</a></li>
+            <li><a class="dropdown-item"
+                   href="{{ route('housings.manage', ['id' => \Illuminate\Support\Facades\Auth::user()->id]) }}"
+                >My listings</a></li>
         </ul>
     </div>
     <div class="dropdown me-0 me-lg-2">

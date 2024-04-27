@@ -128,4 +128,22 @@ class HousingController extends Controller
         return redirect()->route('dashboard')->with('success', $response->message());
     }
 
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse|View
+     */
+    public function manage(Request $request): RedirectResponse|View
+    {
+        $ownerId = $request->route('id');
+
+        $response = Gate::inspect('manage', [Housing::class, $ownerId]);
+        if($response->denied()){
+            return redirect(route('dashboard'))->with('error', $response->message());
+        }
+
+        return view('housing.manage', [
+            'housings' => $this->housingService->getByOwner($ownerId),
+        ]);
+    }
 }

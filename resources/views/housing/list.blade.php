@@ -1,6 +1,6 @@
 @props(['housings'])
 <x-app-layout>
-    <div class="card w-75 mx-auto mt-4">
+    <div class="card w-75 mx-auto mt-4 full-width-md">
         <div class="card-body">
             <h1 class="text-center mb-3 fw-bold text-decoration-underline fs-1">House listings</h1>
             <hr class="mb-3">
