@@ -46,13 +46,16 @@ class ApplicationController extends Controller
     }
 
 
-    public function reviewList(Request $request)
+    /**
+     * Returns the list of applications for a specific housing to review or to dashboard at unauthorized access.
+     *
+     * @param Request $request
+     * @return View|RedirectResponse
+     */
+    public function reviewList(Request $request): View|RedirectResponse
     {
         $housingId = (int)$request->route('id');
-        $housingWithApplications = $this->applicationService->getApplicationsByHousingId($housingId);
-
-        dd($housingWithApplications);
-
+        $housingWithApplications = $this->applicationService->getApplicationsWithHousing($housingId);
         $ownerId = $housingWithApplications->user_id;
 
         $response = Gate::inspect('manage', [Housing::class, $ownerId]);

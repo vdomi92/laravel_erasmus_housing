@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\Applications\CreateApplicationRequest;
 use App\Models\Application;
 use App\Models\Housing;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class ApplicationService
@@ -23,26 +24,15 @@ class ApplicationService
 
     /**
      * @param int $housingId
-     * @return Model
+     * @return Collection
      */
-    public function getApplicationsByHousingId(int $housingId): Model
+    public function getApplicationsWithHousing(int $housingId): Collection
     {
         $query = Housing::with([
-                'applications' => ['applicant'],
+                'applications',
             ])
             ->where('id','=', $housingId);
 
-//        dd($query->toRawSql());
-        $start = microtime(true);
-        $query->get();
-        $time = microtime(true) - $start;
-        dd($time);
-
-
-        return Housing::find($housingId)
-            ->with([
-                'applications' => ['applicant']
-            ])
-            ->first();
+        return $query->get();
     }
 }
