@@ -57,7 +57,6 @@ class ApplicationController extends Controller
         $housingId = (int)$request->route('id');
         $housingWithApplications = $this->applicationService->getApplicationsWithHousing($housingId);
         $ownerId = $housingWithApplications->user_id;
-
         $response = Gate::inspect('manage', [Housing::class, $ownerId]);
 
         if($response->denied()){

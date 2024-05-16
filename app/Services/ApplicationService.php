@@ -5,11 +5,14 @@ namespace App\Services;
 use App\Http\Requests\Applications\CreateApplicationRequest;
 use App\Models\Application;
 use App\Models\Housing;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class ApplicationService
 {
+    /**
+     * @param CreateApplicationRequest $request
+     * @return void
+     */
     public function create(CreateApplicationRequest $request): void
     {
         Application::create([
@@ -24,15 +27,13 @@ class ApplicationService
 
     /**
      * @param int $housingId
-     * @return Collection
+     * @return Model
      */
-    public function getApplicationsWithHousing(int $housingId): Collection
+    public function getApplicationsWithHousing(int $housingId): Model
     {
-        $query = Housing::with([
-                'applications',
-            ])
-            ->where('id','=', $housingId);
-
-        return $query->get();
+        return Housing::with([
+            'applications' => ['applicant'],
+        ])
+            ->findOrFail($housingId);
     }
 }
